@@ -21,6 +21,60 @@
         console.log(`Quantidades de frutas : ${frutas.length}`);
         
         frutas.sort();
+
+        // for (let index = 0; index < frutas.length; index++) {
+        //     console.log(`Fruta: ${index + 1} ${frutas[index]}`);
+            
+        // }
+
+        // frutas.forEach(function(fruta, i) {
+        //     console.log(`Fruta${i + 1} ${fruta}`);
+        // });
+
+        let pranteleira = [
+            "Cerveja", 
+            "Coca-Cola", 
+            "Àgua", 
+            "Gatorade", 
+            "Corote", 
+            "H2O",
+            "Guárana Antártica", 
+            "Tubaina"
+        ];
+
+        let bebida = pranteleira[1]
+
+        switch (bebida) {
+            case "Cerveja":
+                console.log("Achei a sua Cerveja!")
+                break;
+            case "Coca-Cola":
+                console.log("Achei a sua Coca-Cola!")
+                break;
+            case "Àgua":
+                console.log("Achei a sua Àgua!")
+                break;
+            case "Gatorade":
+                console.log("Achei o seu Gatorade!")
+                break;
+            case "Corote":
+                console.log("Achei o seu Corote!")
+                break;
+            case "H2O":
+                console.log("Achei a sua H2O!")
+                break;
+            case "Guárana Antártica":
+                console.log("Achei o seu Guárana Antártica!")
+                break;
+            case "Tubaina":
+                console.log("Achei a sua Tubaina")
+                break;
+        
+            default:
+                console.log(`Não temos essa bebida: (${bebida})`);
+                break;
+        }
+
     </script>
 </body>
 </html>

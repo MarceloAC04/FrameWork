@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+        let marcelo = {
+            nome : "Marcelo",
+            sobrenome : "Araújo Cardoso",
+            idade : 19,
+        };
+
+        marcelo.cpf = '12345670'
+
+        let carlos = new Object();
+        carlos.nome = "Carlos";
+        carlos.sobrenome = 'Roque'
+
+        // console.log(marcelo);
+        // console.log(carlos);
+
+        let fila = [];
+        fila.push(marcelo);
+        fila.push(carlos);
+
+        fila.forEach(function(fila, i) {
+            console.log(`A ${i + 1} pessoa da fila é o(a) ${fila.nome}`);
+        });
+
+    </script>
+
+</body>
+</html>
