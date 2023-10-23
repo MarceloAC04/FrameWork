@@ -10,6 +10,21 @@
 
 <body>
     <form onsubmit="cadastrar(event)">
+        <label for="nome">Nome</label>
+        <input type="text" id="nome" class="entrada entrada--metade" placeholder="Nome">
+        <br><br>
+
+        <label for="email">Email</label>
+        <input type="text" id="email" class="entrada entrada--inteira" placeholder="ex: fulano@email.com">
+        <br><br>
+
+        <label for="pais">Telefone</label>
+        <input type="number" id="pais" class="entrada entrada--terco" placeholder="+55" maxlength="3">
+        <input type="number" id="ddd" class="entrada entrada--terco" placeholder="ddd" maxlength="2">
+        <input type="number" id="telefone" class="entrada entrada--terco" placeholder="ex: 99999-9999"
+            maxlength="10">
+        <br><br>
+
         <label for="cep">CEP</label>
         <input type="number" autocomplete="off" onblur="buscarEndereco(this.value)" placeholder="Digite o seu CEP" id="cep">
         <span id="not-found"></span>
@@ -29,6 +44,10 @@
 
         <label for="estado">Estado</label>
         <input type="text" placeholder=" ... " id="estado">
+        <br><br>
+
+        <label for="pais">Anotações</label>
+        <textarea class="entrada anotacoes" name="anotacoes" id="anotacoes" placeholder="Suas anotações aqui"></textarea>
         <br><br>
 
         <button>Cadastrar</button>
