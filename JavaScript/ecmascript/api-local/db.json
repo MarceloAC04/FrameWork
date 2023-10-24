@@ -2,8 +2,6 @@
   "contatos": [
 
   ],
-
-
   "posts": [
     {
       "id": 1,
@@ -31,12 +29,7 @@
       "id": 6
     }
   ],
-  "comments": [
-    {
-      "id": 1,
-      "body": "some comment",
-      "postId": 1
-    }
+  "feira": [
   ],
   "profile": {
     "name": "typicode"
