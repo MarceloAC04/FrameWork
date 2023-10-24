@@ -74,3 +74,8 @@ function preencherContato() {
         anotacoes
     };
 }
+
+function limpaForm(e) {
+    e.preventDefault();
+    document.getElementById("form").reset();
+}

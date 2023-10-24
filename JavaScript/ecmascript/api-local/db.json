@@ -57,6 +57,66 @@
         "anotacoes": "Heey"
       },
       "id": 2
+    },
+    {
+      "data": {
+        "nome": "Peter",
+        "email": "pete@pider",
+        "pais": "55",
+        "ddd": "21",
+        "telefone": "18218182",
+        "cep": "01033001",
+        "endereço": "Avenida Cásper Líbero",
+        "bairro": "Centro",
+        "estado": "SP",
+        "anotacoes": "teste"
+      },
+      "id": 3
+    },
+    {
+      "data": {
+        "nome": "Peter",
+        "email": "pete@pider",
+        "pais": "55",
+        "ddd": "11",
+        "telefone": "2432423",
+        "cep": "01033001",
+        "endereço": "Avenida Cásper Líbero",
+        "bairro": "Centro",
+        "estado": "SP",
+        "anotacoes": "teste do botao limpar"
+      },
+      "id": 4
+    },
+    {
+      "data": {
+        "nome": "Peter",
+        "email": "pete@pider",
+        "pais": "55",
+        "ddd": "11",
+        "telefone": "434323",
+        "cep": "01033001",
+        "endereço": "Avenida Cásper Líbero",
+        "bairro": "Centro",
+        "estado": "SP",
+        "anotacoes": "t7"
+      },
+      "id": 5
+    },
+    {
+      "data": {
+        "nome": "Miles",
+        "email": "Mol4re@gmail",
+        "pais": "55",
+        "ddd": "11",
+        "telefone": "343243",
+        "cep": "01033001",
+        "endereço": "Avenida Cásper Líbero",
+        "bairro": "Centro",
+        "estado": "SP",
+        "anotacoes": "t8"
+      },
+      "id": 6
     }
   ],
   "profile": {
