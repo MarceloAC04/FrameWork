@@ -1,6 +1,20 @@
 {
   "contatos": [
-
+    {
+      "data": {
+        "nome": "Marcelo",
+        "email": "marcelo@email.com",
+        "pais": "55",
+        "ddd": "11",
+        "telefone": "43656124",
+        "cep": "09510200",
+        "endereço": "Rua Niterói",
+        "bairro": "Centro",
+        "estado": "SP",
+        "anotacoes": "Post na api local"
+      },
+      "id": 1
+    }
   ],
   "posts": [
     {
@@ -29,8 +43,7 @@
       "id": 6
     }
   ],
-  "feira": [
-  ],
+  "feira": [],
   "profile": {
     "name": "typicode"
   }

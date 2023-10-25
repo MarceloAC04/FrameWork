@@ -6,7 +6,7 @@ async function cadastrar(e) {
     e.preventDefault();
     preencherContato();
 
-    fetch(" http://localhost:3000/testes", {
+    fetch(" http://localhost:3000/contatos", {
         method: "POST",
         headers: { "Content-type": "application/json; charset=UTF-8" },
         body: JSON.stringify({data})
@@ -65,8 +65,8 @@ function preencherCampo(endereco) {
 }
 
 function preencherContato() {
-    const nome = document.getElementById("nome").value;
-    const email = document.getElementById("email").value;
+    const nome = document.getElementById("nome").value.trim();
+    const email = document.getElementById("email").value.trim();
     const pais = document.getElementById("pais").value;
     const ddd = document.getElementById("ddd").value;
     const telefone = document.getElementById("telefone").value;
