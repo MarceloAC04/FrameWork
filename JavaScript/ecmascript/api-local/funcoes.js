@@ -1,45 +1,19 @@
 const urlViaCep = "https://viacep.com.br/ws";
 const urlProfessorCep = "http://172.16.35.155:3000/myceps";
 
+
 async function cadastrar(e) {
     e.preventDefault();
+    preencherContato();
 
-    const nome = document.getElementById("nome").value.trim();
-    const email = document.getElementById("email").value.trim();
-    const cep = document.getElementById("cep").value;
-    const endereco = document.getElementById("endereco").value.trim();
-    const numero = document.getElementById("numero").value;
-    const cidade = document.getElementById("cidade").value.trim();
-    const uf = document.getElementById("uf").value.trim();
-
-    objCadastro = {
-        nome,
-        email,
-        cep,
-        endereco,
-        numero,
-        cidade,
-        uf
-    }
-
-    try {
-        const promise = await fetch('http://172.16.35.155:3000/contatos', {
-            method: "POST",
-            headers: {"Context-Type" : "application/json"},
-            data: JSON.stringify(objCadastro)
-        });
-        const dados = await promise.json()
-
-        console.log(dados);
-        
-    } catch (error) {
-        console.log("Deu pau")
-    }
-
-    // if (!validaForm(nome, endereco, cep)) {
-    //     alert("Preencher todos os forms")
-    //     return;
-    // }
+    fetch(" http://localhost:3000/testes", {
+        method: "POST",
+        headers: { "Content-type": "application/json; charset=UTF-8" },
+        body: JSON.stringify({data})
+    })
+        .then((Response) => Response.json())
+        .then((data) => console.log(data))
+        .catch((error) => console.error("Error", error));
 }
 
 // function validaForm(nome, endereco, cep) {
@@ -59,22 +33,21 @@ async function cadastrar(e) {
 
 async function buscarEndereco(cep) {
     // complemento do endereço da API
-    // const resource = `/${cep}/json/`
-    
-    try {
-        // const promise = await fetch(urlViaCep+resource);
+    const resource = `/${cep}/json/`
 
-        const promise = await fetch(`${urlProfessorCep}/${cep}`);
+    try {
+        const promise = await fetch(urlViaCep + resource);
         //transforma o json retornado em um objeto ou array
         const endereco = await promise.json();
         console.log(endereco);
         //prenche o formulario
         preencherCampo({
-            endereco : endereco.logradouro,
-            cidade : endereco.localidade,
-            uf : endereco.uf
+            endereco: endereco.logradouro,
+            bairro: endereco.bairro,
+            cidade: endereco.localidade,
+            estado: endereco.uf
         });
-        
+
         //reseta o span do cep inválido
         document.getElementById("not-found").innerText = ""
     } catch (error) {
@@ -85,8 +58,39 @@ async function buscarEndereco(cep) {
 }
 
 function preencherCampo(endereco) {
-
     document.getElementById("endereco").value = endereco.endereco;
+    document.getElementById("bairro").value = endereco.bairro;
     document.getElementById("cidade").value = endereco.cidade;
-    document.getElementById("uf").value = endereco.uf;
+    document.getElementById("estado").value = endereco.estado;
+}
+
+function preencherContato() {
+    const nome = document.getElementById("nome").value;
+    const email = document.getElementById("email").value;
+    const pais = document.getElementById("pais").value;
+    const ddd = document.getElementById("ddd").value;
+    const telefone = document.getElementById("telefone").value;
+    const cep = document.getElementById("cep").value;
+    const endereço = document.getElementById("endereco").value;
+    const bairro = document.getElementById("bairro").value;
+    const estado = document.getElementById("estado").value;
+    const anotacoes = document.getElementById("anotacoes").value;
+    
+   return data = {
+        nome,
+        email,
+        pais,
+        ddd,
+        telefone,
+        cep,
+        endereço,
+        bairro,
+        estado,
+        anotacoes
+    };
+}
+
+function limpaForm(e) {
+    e.preventDefault();
+    document.getElementById("form").reset();
 }

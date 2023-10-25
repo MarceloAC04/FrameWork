@@ -6,43 +6,87 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <link rel="stylesheet" href="./css/style.css">
 </head>
 
 <body>
-    <form onsubmit="cadastrar(event)">
-        <label for="nome">Nome</label>
-        <input type="text" placeholder="digite o seu nome" id="nome">
-        <br><br>
-        
-        <label for="email">Email</label>
-        <input type="text" placeholder="digite o seu email" id="email">
-        <br><br>
+    <figure>
+        <img class="arte" src="./assets/img/art.png" alt="">
+    </figure>
+    <div class="container-grid container-flex">
 
-        <label for="cep">CEP</label>
-        <input type="number" autocomplete="off" onblur="buscarEndereco(this.value)" placeholder="Digite o seu CEP" id="cep">
-        <span id="not-found"></span>
-        <br><br>
+        <div class="caixa-contato">
+            <i class="fa-regular fa-address-card icone-contato"></i>
+        </div>
 
-        <label for="endereco">Endereço</label>
-        <input type="text" placeholder=" ... " id="endereco">
-        <br><br>
-        
-        <label for="numero">Número</label>
-        <input type="number" placeholder="Digite o seu número" id="numero">
-        <br><br>
-        
-        <label for="cidade">Cidade</label>
-        <input type="text" placeholder=" ... " id="cidade">
-        <br><br>
+        <h1 class="titulo">Contact form</h1>
+        <p class="descricao">Insira os dados do contato e clique em cadastrar!</p>
 
-        <label for="uf">Uf</label>
-        <input type="text" placeholder=" ... " id="uf">
-        <br><br>
+        <form onsubmit="cadastrar(event)"  id="form" class="formulario-contato">
+            <div class="linha">
+                <div class="rotulos">
+                    <label for="nome">Nome</label>
+                </div>
+                <div class="entradas">
+                    <input type="text" id="nome" class="entrada entrada--metade" placeholder="Nome">
+                </div>
+            </div>
 
-        <button>Cadastrar</button>
+            <div class="linha">
+                <div class="rotulos">
+                    <label for="email">Email</label>
+                </div>
+                <div class="entradas">
+                    <input type="text" id="email" class="entrada entrada--inteira" placeholder="ex: fulano@email.com">
+                </div>
+            </div>
 
-        <script src="./funcoes.js"></script>
-    </form>
+            <div class="linha">
+                <div class="rotulos">
+                    <label for="pais">Telefone</label>
+                </div>
+                <div class="entradas">
+                    <input type="number" id="pais" class="entrada entrada--terco" placeholder="+55" maxlength="3">
+                    <input type="number" id="ddd" class="entrada entrada--terco" placeholder="ddd" maxlength="2">
+                    <input type="number" id="telefone" class="entrada entrada--terco" placeholder="ex: 99999-9999"
+                        maxlength="10">
+                </div>
+            </div>
+
+            <div class="linha">
+                <div class="rotulos">
+                    <label for="pais">Endereço</label>
+                </div>
+                <div class="entradas">
+                    <input type="number" autocomplete="off" class="entrada entrada--quarto" onblur="buscarEndereco(this.value)" placeholder="Digite o seu CEP"
+                        id="cep">
+                    <span id="not-found"></span>
+                    <input type="text" class="entrada entrada--quarto" placeholder=" ... " id="endereco">
+                    <input type="text" class="entrada entrada--quarto" placeholder=" ... " id="bairro">
+                    <input type="text" class="entrada entrada--quarto"  placeholder=" ... " id="cidade">
+                    <input type="text" class="entrada entrada--quarto"  placeholder=" ... " id="estado">
+                </div>
+            </div>
+
+            <div class="linha">
+                <div class="rotulos">
+                    <label for="pais">Anotações</label>
+                </div>
+                <div class="entradas">
+                    <textarea class="entrada anotacoes" name="anotacoes" id="anotacoes"
+                        placeholder="Suas anotações aqui"></textarea>
+                </div>
+            </div>
+
+            <div class="linha box-botoes"">
+                <button class="btn cadastrar">Cadastrar</button>
+                <button  onclick="limpaForm(event)" class="btn cadastrar">Limpar</button>
+            </div>
+
+            <script src="./funcoes.js"></script>
+        </form>
+    </div>
 
 </body>
 
