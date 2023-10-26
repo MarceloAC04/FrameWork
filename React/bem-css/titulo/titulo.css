@@ -1,0 +1,33 @@
+/*container */
+.titulo {
+    width: 100%;
+    height: 90px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 2rem;
+   /* border: 1px solid black; */
+}
+
+/* texto */
+.titulo__texto {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 2rem;/* 16px - elemento root/body*/
+    text-transform: uppercase;
+}
+
+/* linha decorativa */
+.titulo__linha {
+    width: 200px;
+    border: 2px solid #B51D44;
+}
+
+.titulo__texto--white {
+    color: white;
+}
+
+.titulo__linha--white {
+    border-color: white;
+}

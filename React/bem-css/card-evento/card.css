@@ -1,0 +1,57 @@
+/* contair dos cards */
+.container-card {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+/* container */
+.card {
+    width: 250px;
+    height: 250px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: space-around;
+    border: 2px solid #821B47;
+    border-radius: 5px;
+}
+
+/* titulo*/
+.card__titulo {
+    width: 144px;
+    height: 24px;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    color: Black;
+    font-size: 18px;
+    line-height: 27px;
+}
+
+/* texto*/
+.card__texto {
+    width: 192px;
+    height: 72px;
+    font-weight: 400;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    text-align: center;
+}
+
+/* link*/
+.card__link {
+    width: 85px;
+    height: 27px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 18px;
+    font-weight: bold;
+    line-height: 27px;
+    letter-spacing: 0em;
+    color: #B51D44;
+    text-decoration: none;
+}
+
+.card__link:hover {
+    color: #a1596b;
+}
