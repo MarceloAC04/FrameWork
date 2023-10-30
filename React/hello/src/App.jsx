@@ -1,13 +1,16 @@
 import Title from './components/Title/Title';
 import CardEvento from './components/CardEventos/CardEventos';
 import Container from './components/Container/Container';
+import Contador from './components/Contador/Contador';
+import Rotas from './route';
 
 import './App.css';
 
 function App() {
   return (
     <div className="App">
-      <h1>Hello World React</h1>
+      <Rotas/>
+      {/* <h1>Hello World React</h1>
       <Title nome="Marcelo" sobrenome=" Araújo" />
       <br></br>
       
@@ -17,6 +20,10 @@ function App() {
         <CardEvento titulo="C#" texto="evento de C#" link=" com o evento C#" />
         <CardEvento titulo="API" texto="evento de API" link=" com o evento API" />
       </Container>
+
+      <Container>
+        <Contador></Contador>
+      </Container> */}
       </div>
   );
 }
