@@ -1,14 +1,14 @@
 import React from 'react';
 import Header from '../../componentes/Header/Header';
-import './LoginPage.css'
+import './EventosPage.css'
 
-const LoginPage = () => {
+const EventosPage = () => {
     return (
         <div>
             <Header/>
-            <h1>Login Event+</h1>
+            <h1>Eventos Event+</h1>
         </div>
     );
 };
 
-export default LoginPage;
+export default EventosPage;
