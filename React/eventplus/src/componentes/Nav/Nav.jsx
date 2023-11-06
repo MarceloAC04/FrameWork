@@ -20,9 +20,10 @@ const Nav = () => {
       </Link>
 
       <div className="navbar__items-box">
-        <a href="">Home</a>
-        <a href="">Tipos de Eventos</a>
-        <a href="">Usuários</a>
+        <Link to="/">Home</Link>
+        <Link to="/eventos">Eventos</Link>
+        <Link to="/tipo-eventos">Tipos de Eventos</Link>
+        <Link to="/login">Usuários</Link>
       </div>
     </nav>
   );
