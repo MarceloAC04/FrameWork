@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Button from '../../componentes/Button/Button';
 import Input from '../../componentes/Input/Input';
+import Titulo from '../../componentes/Titulo/Titulo';
 import './TestePage.css'
 
 const Teste = () => {
@@ -15,6 +16,9 @@ const Teste = () => {
 
     return (
         <div>
+              <Titulo
+             titleText="Teste page"
+            />
             <h1>Teste de Poc's</h1>
             <form onSubmit={handleCalcular}>
                 <Input type="number" 

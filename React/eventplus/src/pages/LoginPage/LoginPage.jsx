@@ -1,10 +1,13 @@
 import React from 'react';
+import Titulo from '../../componentes/Titulo/Titulo';
 import './LoginPage.css'
 
 const LoginPage = () => {
     return (
         <div>
-            <h1>Login Event+</h1>
+              <Titulo
+             titleText="Login page"
+            />
         </div>
     );
 };
