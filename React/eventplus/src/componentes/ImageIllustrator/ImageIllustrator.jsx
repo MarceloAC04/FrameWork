@@ -1,26 +1,25 @@
 import React from 'react';
+import defaultImage from '../../assets/images/default-image.jpeg'
 import './ImageIllustrator.css'
-import tipoEventoImagem from '../../assets/images/tipo-evento.svg'
-import eventoImagem from '../../assets/images/evento.svg'
 
 
-const ImageIllustrator = ({alteText, imageName, additionalClass}) => {
-    let imageResource;
-    switch (imageName) {
-        case 'tipo-evento':
-            imageResource = tipoEventoImagem
-            break;
-        case 'evento':
-            imageResource = eventoImagem
-            break;
+const ImageIllustrator = ({alteText, imageRender=defaultImage, additionalClass=""}) => {
+    // let imageResource;
+    // switch (imageRender="") {
+    //     case 'tipo-evento':
+    //         imageResource = tipoEventoImagem
+    //         break;
+    //     case 'evento':
+    //         imageResource = eventoImagem
+    //         break;
     
-        default:
-            imageName = defaultImage
-            break;
-    }
+    //     default:
+    //         imageResource = defaultImage
+    //         break;
+    // }
     return (
         <figure className="illustrator-box">
-         <img src={imageResource} 
+         <img src={imageRender} 
          alt={alteText}
          className= {`illustrator-box__image ${additionalClass}`}
          />
