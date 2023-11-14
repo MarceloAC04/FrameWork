@@ -4,7 +4,7 @@ export const eventResource = '/Evento';
 
 export const nextEventResource = '/Evento/ListarProximos'
 
-export const eventsTypeResource = '/TiposEventos'
+export const eventsTypeResource = '/TiposEvento'
 
 const apiPort = '7118'
 const localApiUrl = `https://localhost:${apiPort}/api`
