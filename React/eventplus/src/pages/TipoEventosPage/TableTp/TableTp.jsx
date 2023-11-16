@@ -26,7 +26,7 @@ const TableTp = ({ dados, fnDelete = null, fnUpdate = null }) => {
           return (
             <tr className="table-data__head-row">
               <td className="table-data__data table-data__data--big">
-                Texto do tipo
+                {tp.titulo}
               </td>
 
               <td className="table-data__data table-data__data--little">
@@ -34,7 +34,12 @@ const TableTp = ({ dados, fnDelete = null, fnUpdate = null }) => {
               </td>
 
               <td className="table-data__data table-data__data--little">
-                <img className="table-data__icon" src={trashDelete} alt="" />
+                <img 
+                     className="table-data__icon" 
+                     src={trashDelete} alt="" 
+                     onClick={() => {
+                      fnDelete(tp.idTipoEvento)}} 
+                />
               </td>
             </tr>
           );

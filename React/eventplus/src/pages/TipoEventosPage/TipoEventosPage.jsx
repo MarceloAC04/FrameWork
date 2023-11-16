@@ -5,70 +5,79 @@ import Container from "../..//componentes/Container/Container";
 import ImageIllustrator from "../../componentes/ImageIllustrator/ImageIllustrator";
 import tipoEventoImagem from "../../assets/images/tipo-evento.svg";
 import TableTp from "./TableTp/TableTp";
-import {Input, Button} from "../../componentes/FormComponents/FormComponents";
-import api, { eventsTypeResource } from "../../Services/Service"
+import { Input, Button } from "../../componentes/FormComponents/FormComponents";
+import api, { eventsTypeResource } from "../../Services/Service";
 import "./TipoEventosPage.css";
 
 const TipoEventosPage = () => {
   const [frmEdit, SetFrmEdit] = useState(false); //esta em modo de edição?
   const [titulo, SetTitulo] = useState();
-  const [tipoEventos, SetTipoEvento] = useState([]);
+  const [tipoEventos, SetTipoEvento] = useState([]); //array
 
   useEffect(() => {
     // define  a chamda da nossa api
-   async function loadEventsType() {
-    try {
-      const retorno = await api.get(eventsTypeResource)
-      SetTipoEvento(retorno.data)
-      console.log(retorno)
-    } catch (error) {
-      console.log("Erro na api")
-      console.log(error)
-    }
+    async function loadEventsType() {
+      try {
+        const retorno = await api.get(eventsTypeResource);
+        SetTipoEvento(retorno.data);
+        console.log(retorno);
+      } catch (error) {
+        console.log("Erro na api");
+        console.log(error);
+      }
     }
 
     loadEventsType();
-  }, [])
+  }, [tipoEventos]);
 
- async function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
     if (titulo.trim().length < 3) {
-      alert("O titulo dever ter ao menos 3 caracteres")
+      alert("O titulo dever ter ao menos 3 caracteres");
       return;
     }
     try {
       const retorno = await api.post(eventsTypeResource, {
-        titulo:titulo
+        titulo: titulo,
       });
 
       SetTitulo("");
-      alert("Cadastrado com sucesso!")
-      console.log(retorno)
-
-
+      alert("Cadastrado com sucesso!");
+      console.log(retorno);
     } catch (error) {
-      alert("Deu ruim no submit!")
+      alert("Deu ruim no submit!");
     }
-
   }
 
-  function handleUpdate() {
-    alert("Bora editar");
-  }
-
+  //* APAGAR DADOS
   //apaga o tipo de evento na api
-  function handleDelete(idElement) {
-    alert(`Vamos apagar o evento de id: ${idElement}`)
+  async function handleDelete(idElement) {
+    if (! window.confirm(`Confirma a exclusão do tipo evento do Id: ${idElement}`)) {
+      return;
+    }
+    try {
+      const retorno = await api.delete(`${eventsTypeResource}/${idElement}`);
+      if (retorno.status === 204) {
+        alert("Cadastro apagado com sucesso!");
+      }
+    } catch (error) {
+      alert("Deu ruim no delete!");
+    }
   }
-
- // cancela a tela de edição (volta para a tela de cadastro)
-  function editActionAbort() {
-    alert("Cancelar a tela de edição de dados")
-  }
-
+  
+  // EDIÇÃO DOS DADOS
   //mostra o formulário de edição
   function showUpdateForm() {
-    alert(`Vamos editar o formulário de edição`)
+    alert(`Vamos editar o formulário de edição`);
+  }
+
+  function editActionAbort() {
+    alert("Cancelar a tela de edição de dados");
+  }
+  
+  // cancela a tela de edição (volta para a tela de cadastro)
+  function handleUpdate() {
+    alert("Bora editar");
   }
 
   return (
@@ -99,11 +108,11 @@ const TipoEventosPage = () => {
                       }}
                     />
                     {/* <span>{titulo}</span> */}
-                    <Button 
-                    textButton="Cadastrar"
-                    id="cadastrar"
-                    name="cadastrar"
-                    type="submit"
+                    <Button
+                      textButton="Cadastrar"
+                      id="cadastrar"
+                      name="cadastrar"
+                      type="submit"
                     />
                   </>
                 ) : (
@@ -111,20 +120,18 @@ const TipoEventosPage = () => {
                   <p>Tela de Edição</p>
                 )}
               </form>
-
-
             </div>
           </Container>
         </section>
 
         <section className="lista-eventos-section">
           <Container>
-            <Titulo titleText={"Lista Tipo de Evento"} color="white"/>
+            <Titulo titleText={"Lista Tipo de Evento"} color="white" />
             <TableTp
-            dados={tipoEventos}
-              fnUpdate={() => {showUpdateForm();} }
-              fnDelete={() => {handleDelete();} }
-             />
+              dados={tipoEventos}
+              fnUpdate={showUpdateForm}
+              fnDelete={handleDelete}
+            />
           </Container>
         </section>
       </MainContent>
