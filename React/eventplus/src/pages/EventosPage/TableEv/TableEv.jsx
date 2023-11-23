@@ -63,7 +63,7 @@ const TableEv = ({ dados, fnDelete = null, fnUpdate = null }) => {
                      className="table-data__icon" 
                      src={trashDelete} alt="" 
                      onClick={() => {
-                      fnDelete(ev.IdEvento)}} 
+                      fnDelete(ev.idEvento)}} 
                 />
               </td>
             </tr>
