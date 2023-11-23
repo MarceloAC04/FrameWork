@@ -30,23 +30,6 @@ const EventosPage = () => {
 
   const instituicaoId = "3fa85f64-5717-4562-b3fc-2c963f66afa6";
 
-  useEffect(() => {
-    // define  a chamda da nossa api
-    async function loadEvents() {
-      try {
-        const retorno = await api.get(eventResource);
-        setEventos(retorno.data);
-        console.log(retorno);
-      } catch (error) {
-        console.log("Erro na api");
-        console.log(error);
-      }
-    }
-
-    loadEvents();
-  }, []);
-
-  useEffect(() => {
     async function loadEventsType() {
       try {
         const retorno = await api.get(eventsTypeResource);
@@ -57,10 +40,8 @@ const EventosPage = () => {
         console.log(error);
       }
     }
-    loadEventsType();
-  }, []);
-  //chamada do tipo de eventos na api
 
+  //chamada do tipo de eventos na api
   async function loadEvents() {
     try {
       const retorno = await api.get(eventResource);
@@ -71,6 +52,13 @@ const EventosPage = () => {
       console.log(error);
     }
   }
+
+useEffect(() => {
+    // define  a chamda da nossa api
+    loadEvents();
+    loadEventsType();
+  }, []);
+
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -88,11 +76,6 @@ const EventosPage = () => {
       limparForms();
     } catch (error) {
       notifyDanger("Error ao cadastrar!");
-      console.log(date);
-      console.log(nomeEvento);
-      console.log(descricaoEvento);
-      console.log(idTipoEventos);
-      console.log(instituicaoId);
     }
   }
 
@@ -238,6 +221,7 @@ const EventosPage = () => {
                       name={"tipoEventos"}
                       required={"required"}
                       options={optionsTipoEventos}
+                      defaultValue={idTipoEventos}
                       value={idTipoEventos}
                       manipulationFunction={(e) => {
                         setIdTipoEventos(e.target.value);
@@ -291,6 +275,7 @@ const EventosPage = () => {
                       name={"tipoEventos"}
                       required={"required"}
                       options={optionsTipoEventos}
+                      defaultValue={idTipoEventos}
                       value={idTipoEventos}
                       manipulationFunction={(e) => {
                         setIdTipoEventos(e.target.value);

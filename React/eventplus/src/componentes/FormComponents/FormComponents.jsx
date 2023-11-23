@@ -45,12 +45,6 @@ export const Button = ( props ) => {
     );
 }
 
-// options = [
-//     {value: "", text: "Selecione" },
-//     {value: "asjkfhkajsfjhask", text: "SQL Server" },
-//     {value: "asjkfhkajsfjhaskufr34", text: "JavaScript" }
-// ];//veio do banco de dados pela api
-
 
 export const Select = ( {
     required,
@@ -75,7 +69,7 @@ export const Select = ( {
             {options.map((o) =>{
                 return (
                     <>
-                    <option key={o.idTipoEvento} value={o.tipoEvento}>{o.titulo}</option>
+                    <option key={o.idTipoEvento} value={o.IdTipoEvento}>{o.titulo}</option>
                     </>
                 );
             })}
