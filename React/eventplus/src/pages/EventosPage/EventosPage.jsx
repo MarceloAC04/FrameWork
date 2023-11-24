@@ -13,13 +13,14 @@ import {
 import api, { eventResource, eventsTypeResource } from "../../Services/Service";
 import Container from "../../componentes/Container/Container";
 import Notification from "../../componentes/Notification/Notification";
+import Spinner from "../../componentes/Spinner/Spinner";
 
 const EventosPage = () => {
   const [frmEdit, setFrmEdit] = useState(false); //esta em modo de edição?
-  const [idEvento, setIdEvento] = useState(null);
   const [nomeEvento, setNomeEvento] = useState();
   const [descricaoEvento, setDescricaoEvento] = useState();
-  const [idTipoEventos, setIdTipoEventos] = useState();
+  const [idTipoEventos, setIdTipoEventos] = useState(null);
+  const [idEvento, setIdEvento] = useState(null);
   const [date, setDate] = useState();
 
   const [eventos, setEventos] = useState([]); //array
@@ -55,13 +56,18 @@ const EventosPage = () => {
 
 useEffect(() => {
     // define  a chamda da nossa api
-    loadEvents();
     loadEventsType();
+    loadEvents();
   }, []);
 
 
   async function handleSubmit(e) {
     e.preventDefault();
+    if (nomeEvento.trim().length < 3 || descricaoEvento.trim().length < 3) {
+      notifyWarning("O titulo e a descrição dever ter ao menos 3 caracteres");
+      return;
+    }
+    setShowSpinner(true);
     try {
       const retorno = await api.post(eventResource, {
         dataEvento: date,
@@ -77,12 +83,14 @@ useEffect(() => {
     } catch (error) {
       notifyDanger("Error ao cadastrar!");
     }
+    setShowSpinner(false);
   }
 
   async function handleDelete(idElement) {
     if (!window.confirm(`Confirma a exclusão do evento do Id: ${idElement}`)) {
       return;
     }
+    setShowSpinner(true);
     try {
       const retorno = await api.delete(`${eventResource}/${idElement}`);
       if (retorno.status === 204) {
@@ -92,10 +100,12 @@ useEffect(() => {
     } catch (error) {
       notifyDanger("Error ao deletar!");
     }
+    setShowSpinner(false);
   }
 
   async function handleUpdate(e) {
     e.preventDefault();
+    setShowSpinner(true);
     try {
       const retorno = await api.put(`${eventResource}/${idEvento}`, {
         dataEvento: date,
@@ -115,11 +125,13 @@ useEffect(() => {
     } catch (error) {
       notifyDanger("Error ao atualizar!");
     }
+    setShowSpinner(false);
   }
 
   async function showUpdateForm(idElement) {
     setFrmEdit(true);
     setIdEvento(idElement);
+    setShowSpinner(true);
     try {
       const eventoBuscado = await api.get(
         `${eventResource}/${idElement}`,
@@ -127,15 +139,21 @@ useEffect(() => {
       );
       setNomeEvento(eventoBuscado.data.nomeEvento);
       setDescricaoEvento(eventoBuscado.data.descricao);
+      setDate(eventoBuscado.data.dataEvento.slice(0,10));
       setIdTipoEventos(eventoBuscado.data.idTipoEvento);
-      setDate(eventoBuscado.data.dataEvento);
       console.log(eventoBuscado.data);
-    } catch (error) {}
+    } catch (error) {
+      notifyDanger("Erro na tela de edição!")
+    }
+    setShowSpinner(false);
   }
 
   function editActionAbort() {
     setFrmEdit(false);
+    setShowSpinner(true);
     limparForms();
+    loadEventsType();
+    setShowSpinner(false);
   }
 
   function notify(textNote) {
@@ -173,13 +191,22 @@ useEffect(() => {
   function limparForms() {
     setNomeEvento("");
     setDescricaoEvento("");
-    setOptionsTipoEventos([0]);
+    setIdTipoEventos("");
     setDate("");
+  }
+
+  function dePara(retornoAPi) {
+    let arrayOptions = [];
+    retornoAPi.forEach((e) => {
+      arrayOptions.push({ value: e.idTipoEvento, titulo: e.titulo });
+    });
+    return arrayOptions;
   }
 
   return (
     <>
       {<Notification {...notifyUser} setNotifyUser={setNotifyUser} />}
+      {showSpinner ? <Spinner /> : null}
 
       <MainContent>
         <section className="cadastro-evento-section">
@@ -220,8 +247,7 @@ useEffect(() => {
                       id="TipoEventos"
                       name={"tipoEventos"}
                       required={"required"}
-                      options={optionsTipoEventos}
-                      defaultValue={idTipoEventos}
+                      options={dePara(optionsTipoEventos)}
                       value={idTipoEventos}
                       manipulationFunction={(e) => {
                         setIdTipoEventos(e.target.value);
@@ -274,8 +300,7 @@ useEffect(() => {
                       id="TipoEventos"
                       name={"tipoEventos"}
                       required={"required"}
-                      options={optionsTipoEventos}
-                      defaultValue={idTipoEventos}
+                      options={dePara(optionsTipoEventos)}
                       value={idTipoEventos}
                       manipulationFunction={(e) => {
                         setIdTipoEventos(e.target.value);
