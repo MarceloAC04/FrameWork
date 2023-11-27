@@ -1,14 +1,16 @@
 import React, {useContext} from 'react';
 import { ThemeContext } from '../../context/ThemeContext';
+import './ImportantePage.css'
 
-const ProdutoPage = () => {
+const ImportantePage = () => {
     const {theme} = useContext(ThemeContext);
     return (
         <div>
-            <h1>Página de Produto</h1>
+            <h1>Importante</h1>
+            <h1>Página Privada</h1>
             <span>{theme}</span>
         </div>
     );
 };
 
-export default ProdutoPage;
+export default ImportantePage;
