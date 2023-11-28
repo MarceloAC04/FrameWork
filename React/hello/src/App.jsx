@@ -1,30 +1,50 @@
-import Title from './components/Title/Title';
-import CardEvento from './components/CardEventos/CardEventos';
-import Container from './components/Container/Container';
-import Contador from './components/Contador/Contador';
 import Rotas from './route';
+import { useContext, useEffect, useState } from "react";
+import { ThemeContext } from "./context/ThemeContext";
 
 import './App.css';
 
 function App() {
-  return (
-    <div className="App">
-      <Rotas/>
-      {/* <h1>Hello World React</h1>
-      <Title nome="Marcelo" sobrenome=" Araújo" />
-      <br></br>
-      
-      <Container>
-        <CardEvento titulo="Sql Server" texto="evento de Sql Server" link=" com o evento Sql Server" />
-        <CardEvento titulo="React" texto="evento de react" link=" com o evento React" />
-        <CardEvento titulo="C#" texto="evento de C#" link=" com o evento C#" />
-        <CardEvento titulo="API" texto="evento de API" link=" com o evento API" />
-      </Container>
+  const[theme, setTheme] = useState("light");
 
-      <Container>
-        <Contador></Contador>
-      </Container> */}
+  const produtos = [
+    {
+      idProduto: Math.random(),
+      descricao: "camiseta Regata",
+      preco: 49.99,
+      promo: false,
+    },
+    {
+      idProduto: Math.random(),
+      descricao: "Blusa moletom",
+      preco: 119.99,
+      promo: true,
+    },
+    {
+      idProduto: Math.random(),
+      descricao: "camiseta Regata",
+      preco: 49.99,
+      promo: false,
+    },
+  ];
+
+  //validação do localStorage
+  useEffect(() => {
+    const tm = localStorage.getItem("theme");
+
+    if (tm !== null) {
+      setTheme(tm)
+    } else {
+      setTheme('light')
+    }
+  }, []);
+
+  return (
+    <ThemeContext.Provider value={{ theme, setTheme, produtos }}>
+      <div className={`App ${theme === "dark" ? "App-dark" : ""}`}>
+        <Rotas />
       </div>
+    </ThemeContext.Provider>
   );
 }
 
