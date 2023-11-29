@@ -212,7 +212,7 @@ useEffect(() => {
         <section className="cadastro-evento-section">
           <Container>
             <div className="cadastro-evento__box">
-              <Titulo titleText="Eventos page" />
+              <Titulo titleText="Eventos page" color="#ffd100"/>
               <ImageIllustrator imageRender={eventoImage} />
               <form
                 className="ftipo-evento"
@@ -345,7 +345,7 @@ useEffect(() => {
         {/* Section card de eventos */}
         <section className="lista-eventos-section">
           <Container>
-            <Titulo titleText={"Lista de Evento"} color="white" />
+            <Titulo titleText={"Lista de Evento"} color="#ffd100" />
             <TableEv
               dados={eventos}
               fnUpdate={showUpdateForm}

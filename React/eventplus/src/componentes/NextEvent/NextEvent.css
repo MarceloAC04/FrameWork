@@ -11,8 +11,8 @@
 
 
 .tooltip {
-    color: #fff !important;
-    background-color: #B51D44 !important;
+    color: #000 !important;
+    background-color: #ffd100 !important;
   }
 
 .event-card {
@@ -22,7 +22,7 @@
     width: 250px;
     height: 250px;
     padding: 25px;
-    border: 1px solid var(--color-blue-red);
+    border: 1px solid var(--color-yellow);
     border-radius: 5px;
     overflow: auto; 
 }
@@ -32,6 +32,7 @@
     margin-bottom: 20px;
     font-family: Poppins-Medium;
     font-size: 1rem;
+    color: var(--color-black);
 }
 
 .event-card__description {
@@ -39,12 +40,13 @@
     font-size: 1rem;
     text-align: center;
     margin-bottom: 25px;
+    color: var(--color-black);
 }
 
 .event-card__connect-link {
     font-family: Poppins-Medium;
     font-size: 1.125rem;
-    color: var(--color-red);
+    color: var(--color-black);
     text-align: center;
     text-decoration: none;
     cursor: pointer;

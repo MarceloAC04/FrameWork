@@ -27,12 +27,13 @@
     font-size: 0.875rem;
     text-align: center;
     line-height: 50px;
+    color: var(--color-yellow);
   }
   
   .contato__telefone {
     font-family: Poppins-Regular;
     font-size: 0.875rem;
-    color: var(--text-color);
+    color: var(--color-yellow);
   }
   
   @media screen and (min-width: 992px) {

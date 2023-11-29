@@ -178,7 +178,7 @@ const TipoEventosPage = () => {
         <section className="cadastro-evento-section">
           <Container>
             <div className="cadastro-evento__box">
-              <Titulo titleText={"Cadastro Tipo de Eventos"} />
+              <Titulo titleText={"Cadastro Tipo de Eventos"} color="#ffd100" />
 
               <ImageIllustrator imageRender={tipoEventoImagem} />
               <form
@@ -248,7 +248,7 @@ const TipoEventosPage = () => {
 
         <section className="lista-eventos-section">
           <Container>
-            <Titulo titleText={"Lista Tipo de Evento"} color="white" />
+            <Titulo titleText={"Lista Tipo de Evento"} color="black" />
             <TableTp
               dados={tipoEventos}
               fnUpdate={showUpdateForm}

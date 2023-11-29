@@ -24,7 +24,7 @@
 
 /* lista de Eventos */
 .lista-eventos-section {
-    background-color: var(--color-red);
+    background-color: var(--color-yellow);
     width: 100%;
     padding-bottom: 50px;
     overflow: auto;

@@ -6,7 +6,7 @@ import contatoMap from '../../assets/images/contato-map.png'
 const ContactSection = () => {
   return (
     <section className="contato">
-      <Titulo titleText={"Contato"} />
+      <Titulo titleText={"Contato"} color="#ffd100"/>
 
       <div className="contato__endereco-box">
         <img
@@ -14,7 +14,7 @@ const ContactSection = () => {
           alt="Imagem ilustrativa de um mapa"
           className="contato__img-map"
         />
-        <p>
+        <p className="contato__endereco">
           Rua Niterói, 180 - Centro <br />
           São Caetano do Sul - SP <br/>
           <a href="tel+551142252000" className="contato__telefone">
