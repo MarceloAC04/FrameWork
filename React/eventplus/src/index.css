@@ -18,10 +18,12 @@ body {
   
   /* smartphone */
   --color-white: #fff;
+  --color-black: #0000;
   --color-dark-blue: #201849;
   --color-blue-red: #511948;
   --color-medium-red: #821B47;
   --color-red: #B51D44;
+  --color-yellow: #ffd100;
   --text-color: #000;
   
   /* desktop */
