@@ -345,7 +345,7 @@ useEffect(() => {
         {/* Section card de eventos */}
         <section className="lista-eventos-section">
           <Container>
-            <Titulo titleText={"Lista de Evento"} color="#ffd100" />
+            <Titulo titleText={"Lista de Evento"} color="black" />
             <TableEv
               dados={eventos}
               fnUpdate={showUpdateForm}

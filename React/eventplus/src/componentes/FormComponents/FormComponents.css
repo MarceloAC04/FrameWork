@@ -21,6 +21,9 @@
 .input-component::placeholder {
     color: var(--color-yellow);
 }
+.input-component::-webkit-calendar-picker-indicator {
+    background-color: var(--color-yellow);
+}
 
 .button-component {
     width: 100%;
