@@ -11,8 +11,9 @@
 
 
 .tooltip {
-    color: #000 !important;
-    background-color: #ffd100 !important;
+    color: #fde100 !important;
+    background-color: black !important;
+    border: 2px solid var(--color-yellow) !important;
   }
 
 .event-card {
@@ -23,8 +24,9 @@
     height: 250px;
     padding: 25px;
     border: 1px solid var(--color-yellow);
+    background-color: var(--color-yellow);
     border-radius: 5px;
-    overflow: auto; 
+    overflow: hidden; 
 }
 
 .event-card__title {

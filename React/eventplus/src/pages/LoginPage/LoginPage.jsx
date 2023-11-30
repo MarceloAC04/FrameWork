@@ -1,16 +1,24 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import ImageIllustrator from "../../componentes/ImageIllustrator/ImageIllustrator";
 import loginImage from "../../assets/images/login.svg";
 import logo from "../../assets/images/logo-pink.svg";
 import { Input, Button } from "../../componentes/FormComponents/FormComponents";
 import api, { loginResource } from "../../Services/Service";
 import { UserContex, userDecodeToken } from "../../context/AuthContext";
+import { Navigate, useNavigate } from "react-router-dom";
 
 import "./LoginPage.css";
 
 const LoginPage = () => {
   const [user, setUser] = useState({ email: "", senha: "" });
   const {userData, setUserData} = useContext(UserContex);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (userData.nome) {
+    navigate("/")
+    }
+  }, [userData])
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -28,6 +36,7 @@ const LoginPage = () => {
         const userFullToken = userDecodeToken(promise.data.token);
         setUserData(userFullToken);
         localStorage.setItem("token", JSON.stringify(userFullToken))
+        navigate('/')
       } catch (error) {
         alert("Verifque os dados e a conexão com a internet!");
         console.log(error);

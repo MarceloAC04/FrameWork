@@ -212,7 +212,7 @@ useEffect(() => {
         <section className="cadastro-evento-section">
           <Container>
             <div className="cadastro-evento__box">
-              <Titulo titleText="Eventos page" color="#ffd100"/>
+              <Titulo titleText="Eventos page" color="#fde100"/>
               <ImageIllustrator imageRender={eventoImage} />
               <form
                 className="ftipo-evento"

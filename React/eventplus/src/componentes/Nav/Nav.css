@@ -23,7 +23,7 @@
     align-items: flex-start;
 
     opacity: 0;
-    background-color: #FFD100;
+    background-color: #FDE100;
     transition: left .4s, opacity .5s;
 }
 

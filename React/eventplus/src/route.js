@@ -7,7 +7,6 @@ import EventosPage from "./pages/EventosPage/EventosPage";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import Header from "./componentes/Header/Header";
 import Footer from "./componentes/Footer/Footer";
-import TestePage from "./pages/TestePage/TestePage";
 
 const Rotas = () => {
   return (
@@ -19,7 +18,6 @@ const Rotas = () => {
         <Route element={<EventosPage />} path={"/eventos"} />
         <Route element={<TipoEventosPage />} path={"/tipo-eventos"} />
         <Route element={<LoginPage />} path={"/login"} />
-        <Route element={<TestePage />} path={"/teste"} />
       </Routes>
       
       <Footer />
