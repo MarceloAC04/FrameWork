@@ -1,4 +1,4 @@
-import Rotas from "./route";
+import Rotas from "./routes/route";
 import { UserContex } from "./context/AuthContext";
 
 import "./App.css";

@@ -5,12 +5,11 @@ import logo from "../../assets/images/logo-pink.svg";
 import { Input, Button } from "../../componentes/FormComponents/FormComponents";
 import api, { loginResource } from "../../Services/Service";
 import { UserContex, userDecodeToken } from "../../context/AuthContext";
-import { Navigate, useNavigate } from "react-router-dom";
-
+import {useNavigate} from "react-router-dom";
 import "./LoginPage.css";
 
 const LoginPage = () => {
-  const [user, setUser] = useState({ email: "", senha: "" });
+  const [user, setUser] = useState({ email: "marcelo@email.com", senha: "" });
   const {userData, setUserData} = useContext(UserContex);
   const navigate = useNavigate();
 
