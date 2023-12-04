@@ -34,7 +34,7 @@ const Nav = ({ exibeNavbar, setExibeNavbar }) => {
           <Link to="/eventos" className="navbar__item">Eventos</Link>
           </>
           ) : userData.nome && userData.role === "Aluno" ? (
-            <Link to="/eventos" className="navbar__item">Eventos Alunos</Link>
+            <Link to="/eventos-alunos" className="navbar__item">Eventos Alunos</Link>
           ) :
           (null)
         }

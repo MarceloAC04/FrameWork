@@ -3,6 +3,7 @@ import { Route, BrowserRouter, Routes } from "react-router-dom";
 
 import HomePage from "../pages/HomePage/HomePage";
 import TipoEventosPage from "../pages/TipoEventosPage/TipoEventosPage";
+import EventosAlunoPage from "../pages/EventosAlunosPage/EventosAlunosPage";
 import EventosPage from "../pages/EventosPage/EventosPage";
 import LoginPage from "../pages/LoginPage/LoginPage";
 import Header from "../componentes/Header/Header";
@@ -22,6 +23,15 @@ const Rotas = () => {
         element={
           <PrivateRoute redirectTo="/"> 
             <EventosPage />
+          </PrivateRoute>
+      }  
+      />
+
+        <Route 
+        path={"/eventos-alunos"}
+        element={
+          <PrivateRoute redirectTo="/"> 
+            <EventosAlunoPage />
           </PrivateRoute>
       }  
       />
