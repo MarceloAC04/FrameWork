@@ -65,7 +65,7 @@ export const Select = ( {
             value={value}
 
         >
-            <option>Tipo de Evento</option>
+            <option>Selecione</option>
             {options.map((o) =>{
                 return (
                     <>

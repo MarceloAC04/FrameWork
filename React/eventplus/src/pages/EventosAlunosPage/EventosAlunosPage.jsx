@@ -7,24 +7,19 @@ import { Select } from "../../componentes/FormComponents/FormComponents";
 import Spinner from "../../componentes/Spinner/Spinner";
 import Modal from "../../componentes/Modal/Modal";
 import api, { eventResource, myEventsResource } from "../../Services/Service";
-
-import "./EventosAlunosPage.css";
 import { UserContex } from "../../context/AuthContext";
+import "./EventosAlunosPage.css";
 
 const EventosAlunoPage = () => {
   // state do menu mobile
-  const [eventos, setEventos] = useState([
-    { idEvento: "1234", nomeEvento: "Evento", dataEvento: "20/12/2023" },
-    { idEvento: "1544", nomeEvento: "Evento2", dataEvento: "21/12/2023" },
-    { idEvento: "1334", nomeEvento: "Evento3", dataEvento: "22/12/2023" },
-  ]);
+  const [eventos, setEventos] = useState([]);
   // select mocado
   const [quaisEventos, setQuaisEventos] = useState([
-    { value: "1", titulo: "Todos os eventos" },
-    { value: "2", titulo: "Meus eventos" },
+    { value: 1, titulo: "Todos os eventos" },
+    { value: 2, titulo: "Meus eventos" },
   ]);
 
-  const [tipoEvento, setTipoEvento] = useState(1); //código do tipo do Evento escolhido
+  const [tipoEvento, setTipoEvento] = useState("1"); //código do tipo do Evento escolhido
   const [showSpinner, setShowSpinner] = useState(false);
   const [showModal, setShowModal] = useState(false);
 
@@ -34,16 +29,42 @@ const EventosAlunoPage = () => {
   async function loadEventsType() {
     setShowSpinner(true);
     setEventos([]);
-    if (tipoEvento === 1) {
+    if (tipoEvento === "1") {
       try {
         const retornoEventos = await api.get(eventResource);
         setEventos(retornoEventos.data);
       } catch (error) {
-        console.log("Error na api")
-        console.log(error)
+        console.log("Error na api");
       }
-    } else {
-        const retornoEventos = await api.get(`${myEventsResource}/${userData.userId}`)
+    } else if (tipoEvento === "2") {
+      try {
+        const retornoEventos = await api.get(
+          `${myEventsResource}/${userData.id}`
+        );
+        const arrEventos = [];
+
+        retornoEventos.data.forEach((e) => {
+          arrEventos.push(e.evento);
+        });
+        setEventos(arrEventos);
+      } catch (error) {
+        console.log("Error na api");
+      }
+    }
+    else {
+      setEventos([]);
+    }
+    setShowSpinner(false);
+  }
+
+  const verificaPresenca = (arrAllEvents, eventUser) => {
+    for (let e = 0; e < arrAllEvents.length; e++) {
+      for (let u = 0; u < eventUser.length; u++) {
+        if (arrAllEvents[e].idEvento === eventUser[u].idEvento) {
+          arrAllEvents[e].situacao = true;
+          break;
+        }
+      }
     }
   }
 

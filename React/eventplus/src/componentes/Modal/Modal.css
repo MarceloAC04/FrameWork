@@ -48,6 +48,11 @@
     color: #fde100;
   }
 
+  .modal__close {
+    padding-left: 85%;
+    cursor: pointer;
+  }
+
 
   .comentary {
     display: flex;
@@ -66,6 +71,7 @@
   .comentary__icon-delete {
     width: 15px;
     height: 16px;
+    cursor: pointer;
   }
   
   .comentary__text {
@@ -101,8 +107,8 @@
   
   @media screen and (min-width: 992px) {
     .modal__box {
-      width: 770px;
-      height: 770px;
+      width: 715px;
+      height: 710px;
       padding: 40px 35px;
     }
     .modal__title,
