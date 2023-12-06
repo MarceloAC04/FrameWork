@@ -2,13 +2,15 @@
     margin-top: 60px;
 }
 
-/* .lista-eventos-section {
-    background-color: var(--color-white) !important;
-    border: 1px solid red;
-} */
+ .lista-eventos-section {
+    background-color: var(--color-yellow) !important;
+} 
 
 .select-tp-evento {
     margin-top: 30px;
+    background-color: var(--color-yellow);
+    color: var(--text-color);
+    border-bottom: 2px solid black;
 }
 
 @media screen and (min-width: 992px){
