@@ -8,6 +8,8 @@ import Spinner from "../../componentes/Spinner/Spinner";
 import Notification from "../../componentes/Notification/Notification";
 import Modal from "../../componentes/Modal/Modal";
 import api, {
+  commentaryEventResource,
+  commentaryEventUserIdResource,
   eventResource,
   myEventsResource,
   presenceEventResource,
@@ -18,6 +20,8 @@ import "./EventosAlunosPage.css";
 const EventosAlunoPage = () => {
   // state do menu mobile
   const [eventos, setEventos] = useState([]);
+  const [comentario, setComentario] = useState("");
+  const [idComentario, setIdComentario] = useState("");
   // select mocado
   const [quaisEventos, setQuaisEventos] = useState([
     { value: 1, titulo: "Todos os eventos" },
@@ -46,19 +50,16 @@ const EventosAlunoPage = () => {
   };
 
   useEffect(() => {
-    
     loadEventsType();
   }, [tipoEvento, userData.id]);
-  
+
   async function loadEventsType() {
     setShowSpinner(true);
     setEventos([]);
     if (tipoEvento === "1") {
       try {
         const todosEventos = await api.get(eventResource);
-        const meusEventos = await api.get(
-          `${myEventsResource}/${userData.id}`
-        );
+        const meusEventos = await api.get(`${myEventsResource}/${userData.id}`);
         const eventosMarcados = verificaPresenca(
           todosEventos.data,
           meusEventos.data
@@ -75,7 +76,11 @@ const EventosAlunoPage = () => {
         const arrEventos = [];
 
         retornoEventos.data.forEach((e) => {
-          arrEventos.push({ ...e.evento, situacao: e.situacao , idPresencaEvento: e.idPresencaEvento});
+          arrEventos.push({
+            ...e.evento,
+            situacao: e.situacao,
+            idPresencaEvento: e.idPresencaEvento,
+          });
         });
         setEventos(arrEventos);
       } catch (error) {
@@ -86,23 +91,71 @@ const EventosAlunoPage = () => {
     }
     setShowSpinner(false);
   }
-  
+
   // toggle meus eventos ou todos os eventos
   function myEvents(tpEvent) {
     setTipoEvento(tpEvent);
   }
 
-  async function loadMyComentary(idComentary) {
-    return "????";
+  async function loadMyCommentary(idUsuario, idEvent) {
+    try {
+      const myCommentary = await api.get(
+        `${commentaryEventUserIdResource}?idUsuario=${idUsuario}&idEvento=${idEvent}`
+      );
+      setComentario(myCommentary.data.descricao);
+    } catch (error) {
+      notifyDanger("error na api");
+    }
   }
 
-  const showHideModal = () => {
+  async function loadMyCommentary(idUsuario, idEvent) {
+    try {
+      const myCommentary = await api.get(
+        `${commentaryEventUserIdResource}?idUsuario=${idUsuario}&idEvento=${idEvent}`
+      );
+      setComentario(myCommentary.data.descricao);
+      setIdComentario(myCommentary.data.idComentarioEvento);
+    } catch (error) {
+      notifyDanger("error na api");
+    }
+  }
+
+  async function postMyCommentary(commentary) {
+    try {
+      const promise = await api.post(commentaryEventResource, {
+        descricao: commentary,
+        exibe: true,
+        idUsuario: userData.id,
+        idEvento: userData.idEvento
+      });
+      if (promise.status === 201) {
+        notify("Comentario feito!");
+      }
+      console.log(userData.id, userData.idEvento);
+    } catch (error) {
+      notifyDanger("Erro ao cadastrar");
+    }
+  }
+
+  const showHideModal = (idEvent) => {
     setShowModal(showModal ? false : true);
+    setUserData({ ...userData, idEvento: idEvent });
   };
 
-  const commentaryRemove = () => {
-    alert("Remover o comentário");
-  };
+  async function commentaryRemove(idComentary) {
+    try {
+      const promise = await api.delete(
+        `${commentaryEventResource}/${idComentary}`
+      );
+      if (promise.status === 204) {
+        notify("Comentario excluido com sucesso!");
+        loadMyCommentary();
+      }
+    } catch (error) {
+      notifyDanger("Error ao deletar!");
+      console.clear();
+    }
+  }
 
   function notify(textNote) {
     setNotifyUser({
@@ -146,27 +199,32 @@ const EventosAlunoPage = () => {
           idEvento: eventId,
         });
         if (promise.status === 201) {
-          loadEventsType()
           notify("Presença confirmada!");
         }
+        loadEventsType();
       } catch (error) {
         notifyDanger("Error na api");
       }
-      return;
-    }
-    alert("DESCONECTAR AO EVENTO:" + presencaId);
-    try {
-      const unconnected = await api.delete(`${eventResource}/${presencaId}`);
-      if (unconnected.status === 204) {
-        loadEventsType()
-        notify("Presença cancelada!");
+    } else {
+      alert("DESCONECTAR AO EVENTO:" + presencaId);
+      try {
+        const unconnected = await api.delete(
+          `${presenceEventResource}/${presencaId}`
+        );
+        if (unconnected.status === 204) {
+          notify("Presença cancelada!");
+        }
+        loadEventsType();
+      } catch (error) {
+        notifyDanger("Error na api");
       }
-    } catch (error) {
-      notifyDanger("Error na api");
     }
   }
   return (
     <>
+      {<Notification {...notifyUser} setNotifyUser={setNotifyUser} />}
+      {/* SPINNER -Feito com position */}
+      {showSpinner ? <Spinner /> : null}
       <MainContent>
         <div className="lista-eventos-section">
           <Container>
@@ -188,22 +246,20 @@ const EventosAlunoPage = () => {
             <Table
               dados={eventos}
               fnConnect={handleConnect}
-              fnShowModal={() => {
-                showHideModal();
-              }}
+              fnShowModal={showHideModal}
             />
           </Container>
         </div>
       </MainContent>
 
-      {/* SPINNER -Feito com position */}
-      {showSpinner ? <Spinner /> : null}
-
       {showModal ? (
         <Modal
-          userId={userData.id}
           showHideModal={showHideModal}
+          fnGet={loadMyCommentary}
+          fnPost={postMyCommentary}
           fnDelete={commentaryRemove}
+          comentaryText={comentario}
+          idCommentary={idComentario}
         />
       ) : null}
     </>
