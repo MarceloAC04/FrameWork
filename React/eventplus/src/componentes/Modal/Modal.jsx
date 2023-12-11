@@ -11,7 +11,6 @@ const Modal = ({
   modalTitle = "Feedback",
   comentaryText = "Não informado. Não informado. Não informado.",
   idEvento = null,
-  idCommentary,
   fnGet = null,
   showHideModal = false,
   fnDelete = null,
@@ -19,17 +18,28 @@ const Modal = ({
 
 }) => {
 
-  const {userData, setUserData} = useContext(UserContex);
-  const [commentary, setCommentary] = useState("")
+  const {userData} = useContext(UserContex);
+  const [idComentario, setIdComentario] = useState("");
+  const [myComentario, setMyComentario] = useState("");
+  const [haveCommentary, setHaveCommentary] = useState(false);
+  const [commentary, setCommentary] = useState("");
   console.clear()
   console.log(userData);
-  console.log(idCommentary);
+  console.log(idComentario);
  
 
    useEffect(() =>
    {
      async function loadCommentary() {
-       fnGet(userData.id, userData.idEvento)
+       const getCommentary = await fnGet(userData.id, userData.idEvento);
+
+       setMyComentario(getCommentary.descricao);
+       setIdComentario(getCommentary.idComentarioEvento);
+       if (getCommentary.descricao) {
+        setHaveCommentary(true);
+      } else {
+        setHaveCommentary(false);
+      }
      }
      loadCommentary();
    },[])
@@ -50,11 +60,11 @@ const Modal = ({
             className="comentary__icon-delete"
             alt="Ícone de uma lixeira"
             onClick={() => {
-              fnDelete(idCommentary)
+              fnDelete(idComentario)
             }}
           />
           <p className="comentary__text"
-          >{comentaryText}</p>
+          >{haveCommentary ? myComentario : comentaryText}</p>
 
           <hr className="comentary__separator" />
         </div>

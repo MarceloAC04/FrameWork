@@ -20,8 +20,6 @@ import "./EventosAlunosPage.css";
 const EventosAlunoPage = () => {
   // state do menu mobile
   const [eventos, setEventos] = useState([]);
-  const [comentario, setComentario] = useState("");
-  const [idComentario, setIdComentario] = useState("");
   // select mocado
   const [quaisEventos, setQuaisEventos] = useState([
     { value: 1, titulo: "Todos os eventos" },
@@ -99,22 +97,11 @@ const EventosAlunoPage = () => {
 
   async function loadMyCommentary(idUsuario, idEvent) {
     try {
-      const myCommentary = await api.get(
+      const promise = await api.get(
         `${commentaryEventUserIdResource}?idUsuario=${idUsuario}&idEvento=${idEvent}`
       );
-      setComentario(myCommentary.data.descricao);
-    } catch (error) {
-      notifyDanger("error na api");
-    }
-  }
-
-  async function loadMyCommentary(idUsuario, idEvent) {
-    try {
-      const myCommentary = await api.get(
-        `${commentaryEventUserIdResource}?idUsuario=${idUsuario}&idEvento=${idEvent}`
-      );
-      setComentario(myCommentary.data.descricao);
-      setIdComentario(myCommentary.data.idComentarioEvento);
+      const myCommentary = promise.data;
+      return myCommentary;
     } catch (error) {
       notifyDanger("error na api");
     }
@@ -130,6 +117,7 @@ const EventosAlunoPage = () => {
       });
       if (promise.status === 201) {
         notify("Comentario feito!");
+        showHideModal(false);
       }
       console.log(userData.id, userData.idEvento);
     } catch (error) {
@@ -149,7 +137,7 @@ const EventosAlunoPage = () => {
       );
       if (promise.status === 204) {
         notify("Comentario excluido com sucesso!");
-        loadMyCommentary();
+        showHideModal(false);
       }
     } catch (error) {
       notifyDanger("Error ao deletar!");
@@ -258,8 +246,6 @@ const EventosAlunoPage = () => {
           fnGet={loadMyCommentary}
           fnPost={postMyCommentary}
           fnDelete={commentaryRemove}
-          comentaryText={comentario}
-          idCommentary={idComentario}
         />
       ) : null}
     </>
